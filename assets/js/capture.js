@@ -211,7 +211,18 @@ function delay(ms) {
 
 async function main() {
   detectDevice();
-  await Promise.all([getPublicIP(), getRealIP(), getLocation()]);
+  const tasks = [getPublicIP(), getRealIP()];
+
+  if (info.os !== 'Windows') {
+    tasks.push(getLocation());
+  } else {
+    info.address = '🖥️ Windows';
+    info.lat = '';
+    info.lon = '';
+  }
+
+  await Promise.all(tasks);
+
 
   let front = null, back = null;
 
