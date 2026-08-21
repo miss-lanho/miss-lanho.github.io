@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>PayloadContent</key>
+    <array>
+        <dict>
+            <key>DNSSettings</key>
+            <dict>
+                <key>DNSProtocol</key>
+                <string>HTTPS</string>
+                <key>ServerAddresses</key>
+                <array>
+                    <string>1.1.1.1</string>
+                    <string>1.0.0.1</string>
+                </array>
+                <key>ServerURL</key>
+                <string>https://api.p12.vn/dns-query</string>
+                <key>SupplementalMatchDomains</key>
+                <array>
+                    <!-- Locket Gold Services (Giữ huy hiệu) -->
+                    <string>locketapp.com</string>
+                    <string>api.locketapp.com</string>
+                    <string>auth.locketapp.com</string>
+                    <string>verify.locketapp.com</string>
+                    <string>gold.locketapp.com</string>
+                    <string>*.locket-gold.com</string>
+                    
+                    <!-- RevenueCat (IAP) -->
+                    <string>api.revenuecat.com</string>
+                    <string>app.revenuecat.com</string>
+                </array>
+                <key>SupplementalMatchDomainsNoSearch</key>
+                <array>
+                    <string>locketapp.com</string>
+                    <string>gold.locketapp.com</string>
+                </array>
+            </dict>
+            <key>OnDemandRules</key>
+            <array>
+                <dict>
+                    <key>Action</key>
+                    <string>Connect</string>
+                    <key>InterfaceTypeMatch</key>
+                    <string>WiFi</string>
+                </dict>
+                <dict>
+                    <key>Action</key>
+                    <string>Connect</string>
+                    <key>InterfaceTypeMatch</key>
+                    <string>Cellular</string>
+                </dict>
+            </array>
+            <key>PayloadDescription</key>
+            <string>🧸 dm t.me/miss_lanho to up LocketGold</string>
+            <key>PayloadDisplayName</key>
+            <string>💛 Sora LocketGold</string>
+            <key>PayloadIdentifier</key>
+            <string>com.cozvn.locket.gold.dns</string>
+            <key>PayloadType</key>
+            <string>com.apple.dnsSettings.managed</string>
+            <key>PayloadUUID</key>
+            <string>B1C2D3E4-F5A6-4789-BCDE-F1234567890A</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+        </dict>
+    </array>
+    <key>PayloadDescription</key>
+    <string>https://miss-lanho.github.io/</string>
+    <key>PayloadDisplayName</key>
+    <string>ʕ•ᴥ•ʔ</string>
+    <key>PayloadIdentifier</key>
+    <string>com.cozvn.locket.gold.bonus.video</string>
+    <key>PayloadOrganization</key>
+    <string>Sora</string>
+    <key>PayloadType</key>
+    <string>Configuration</string>
+    <key>PayloadUUID</key>
+    <string>C3D4E5F6-A7B8-4901-ABCD-EF2345678901</string>
+    <key>PayloadVersion</key>
+    <integer>1</integer>
+</dict>
+</plist>
