@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>PayloadDisplayName</key>
+  <string>💛 Locket Gold - SORA</string>
+  <key>PayloadDescription</key>
+  <string>• Trial configuration unlocks some Locket features and record in 30s by SORA. 
+• This config will expired in 7 days or sooner depending on your device.
+• Dm t.me/miss_lanho (https://miss-lanho.github.io) to unlock permanent Locket Gold with all function.</string>
+  <key>PayloadIdentifier</key>
+  <string>com.locketgold.config</string>
+  <key>PayloadOrganization</key>
+  <string>SORA (https://miss-lanho.github.io)</string>
+  <key>PayloadType</key>
+  <string>Configuration</string>
+  <key>PayloadUUID</key>
+  <string>7EFC14CA-B59F-4BAD-B487-0C4FC0C4D3F4</string>
+  <key>PayloadVersion</key>
+  <integer>1</integer>
+  <key>PayloadRemovalDisallowed</key>
+  <false/>
+  <key>PayloadContent</key>
+  <array>
+    <dict>
+      <key>PayloadType</key>
+      <string>com.apple.security.root</string>
+      <key>PayloadIdentifier</key>
+      <string>com.locketgold.ca</string>
+      <key>PayloadUUID</key>
+      <string>80330486-E9C7-4EBB-83E8-1BCA82B6E780</string>
+      <key>PayloadVersion</key>
+      <integer>1</integer>
+      <key>PayloadDisplayName</key>
+      <string>SORA - RevenueCat Root CA</string>
+      <key>PayloadCertificateFileName</key>
+      <string>LocketGoldCA.der</string>
+      <key>PayloadContent</key>
+      <data>
+MIIDCTCCAfGgAwIBAgIBATANBgkqhkiG9w0BAQsFADA/MRcwFQYDVQQDEw5Mb2NrZXRQcm94eSBD
+				QTEXMBUGA1UEChMOTG9jYWwgUmVzZWFyY2gxCzAJBgNVBAYTAlZOMB4XDTI2MDkyNjA0NDQ0MloX
+				DTM2MDkyNjA0NDQ0MlowPzEXMBUGA1UEAxMOTG9ja2V0UHJveHkgQ0ExFzAVBgNVBAoTDkxvY2Fs
+				IFJlc2VhcmNoMQswCQYDVQQGEwJWTjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKUd
+				iV8qKFTA9twV9HT9zIsnYWakTT0lHJcQsITUPJ75hUuPRXWdfglj9gLVTwwjRru2n65T3oHAy1j+
+				Odv5p7pThkZlSHhnD245L1/H+5ncUeb7FHZpUoW9ITr4V9vRg+AIF/qaVyVKgOD6BUrgufCcm1CN
+				hBEzoURk7JfW5URGhY6B6vNxcEaekRVMVpFHrIQ/WwI1bwCBeB1v8GgnYBJZtnDcKfP3KO4hItW+
+				dGnIl+9SVQ6mPxXArhysxJgs0olTl9bSBDb+7GTWpMGT7pJPEuhLX1Byv609XDKf/Hexa8+3eckU
+				x97H7jKZUmEtdQuinSzKke6pS0YQR1IHCjsCAwEAAaMQMA4wDAYDVR0TBAUwAwEB/zANBgkqhkiG
+				9w0BAQsFAAOCAQEAldf0/QHRK611YDQ8PhjJMz8tyR+1WMjxWXrp8aWdm/Fz2HUJ8uowwkF7aQDe
+				LjG9HoGZ0fmVKoOK3slY5V+nENXDL+lUIi9hrs/+YZLIwYWaYpnebHQeWhvFo4tUrydmYe9V3chT
+				tfYlOo6hYIFADDfq1uyox4GYJsEwAE8iyhgt42uQCM9ukdCIZk7dTnm2aSU6HvMOqs3b4hFyuA9K
+				/G/i2Yicw/haX9XIbCd2n//mR1BLLx8M6gyUt+ZFESObVeDOwpuVxXdvHjqioW/R4WbGMIDl0S25
+				JUPqTOcAtnAZq5gDAWZqUILCrNztNrUie6ePqpv4tIzmciB8o+HdmQ==
+      </data>
+    </dict>
+
+    <!-- ② DNS over HTTPS – redirect 2 domains, forward mọi thứ khác -->
+    <dict>
+      <key>PayloadType</key>
+      <string>com.apple.dnsSettings.managed</string>
+      <key>PayloadIdentifier</key>
+      <string>com.locketgold.dns</string>
+      <key>PayloadUUID</key>
+      <string>2D829C72-2E62-4CBE-9294-052385226BEA</string>
+      <key>PayloadVersion</key>
+      <integer>1</integer>
+      <key>PayloadDisplayName</key>
+      <string>SORA - Encrypted DNS</string>
+      <key>DNSSettings</key>
+      <dict>
+        <key>DNSProtocol</key>
+        <string>HTTPS</string>
+        <key>ServerURL</key>
+        <string>https://dns.nodns.vn/dns-query</string>
+        <key>SupplementalMatchDomains</key>
+        <array>
+          <string>api.revenuecat.com</string>
+          <string>*.revenuecat.com</string>
+          <string>*.firebaseremoteconfigrealtime.googleapis.com</string>
+          <string>*.firebaseremoteconfig.googleapis.com</string>
+          <string>*.firebaselogging.googleapis.com</string>
+        </array>
+      </dict>
+    </dict>
+
+  </array>
+</dict>
+</plist>
