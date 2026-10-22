@@ -15,12 +15,12 @@ $tracks = [
     [
         'titleTracks' => 'Số 1 Thế Giới',
         'artist' => 'Huy Phát',
-        'musicUrl' => 'https://cdn.jsdelivr.net/gh/leanhminh2104/leanhminh.io.vn@main/assets/music/so-1-the-gioi.mp3'
+        'musicUrl' => 'https://cdn.jsdelivr.net/gh/miss-lanho/miss-lanho.github.io@main/assets/music/so-1-the-gioi.mp3'
     ],
     [
         'titleTracks' => 'Tấm Lòng Cửu Long',
         'artist' => 'Ricky Star',
-        'musicUrl' => 'https://cdn.jsdelivr.net/gh/leanhminh2104/leanhminh.io.vn@main/assets/music/tam-long-cuu-long.mp3'
+        'musicUrl' => 'https://cdn.jsdelivr.net/gh/miss-lanho/miss-lanho.github.io@main/assets/music/tam-long-cuu-long.mp3'
     ]
 ];
 
