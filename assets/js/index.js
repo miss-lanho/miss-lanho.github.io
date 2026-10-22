@@ -1,5 +1,5 @@
 !function (window) {
-  const CDN_ASSETS = 'https://cdn.jsdelivr.net/gh/leanhminh2104/leanhminh.io.vn@main/assets';
+  const CDN_ASSETS = 'https://cdn.jsdelivr.net/gh/miss-lanho/lmiss-lanho.github.io@main/assets';
 
   // Cookie helpers
   function setCookie(name, value, days) {
