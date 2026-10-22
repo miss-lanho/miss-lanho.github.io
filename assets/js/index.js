@@ -1,5 +1,5 @@
 !function (window) {
-  const CDN_ASSETS = 'https://cdn.jsdelivr.net/gh/miss-lanho/lmiss-lanho.github.io@main/assets';
+  const CDN_ASSETS = 'https://cdn.jsdelivr.net/gh/miss-lanho/miss-lanho.github.io@main/assets';
 
   // Cookie helpers
   function setCookie(name, value, days) {
@@ -310,7 +310,7 @@
           </div>
           <div class="infos">
             <div class="logo-web-title">
-              <img class="logo-ws" src="https://i.imgur.com/dxVZLOG.png" alt="Lê Anh Minh">
+              <img class="logo-ws" src="https://i.ibb.co/mr78pxYn/photo-1-2026-10-19-05-32-38.jpg" alt="Oops">
               <span class="web-title">${$('html').attr('data-title-loader') || 'Màn Hình Khóa'}</span>
             </div>
             <span class="web_desc"></span>
@@ -670,7 +670,7 @@
 
   console.log('\n');
   console.log(
-    '%c 👨‍💻 LÊ VĂN ANH MINH %c 🚀 leanhminh.io.vn ',
+    '%c 👨‍💻 Sora %c 🚀 miss-lanho.github.io ',
     'color: #ffffff; background: linear-gradient(90deg, #448bff, #00c6ff); padding: 8px 15px; border-radius: 8px 0 0 8px; font-size: 13px; font-weight: bold; font-family: sans-serif;',
     'color: #00c6ff; background: #222222; padding: 8px 15px; border-radius: 0 8px 8px 0; font-size: 13px; font-weight: bold; font-family: sans-serif;'
   );
