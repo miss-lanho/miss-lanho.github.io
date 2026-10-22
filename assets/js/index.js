@@ -1,5 +1,5 @@
 !function (window) {
-  const CDN_ASSETS = 'https://cdn.jsdelivr.net/gh/miss-lanho/miss-lanho.github.io@main/assets';
+  const CDN_ASSETS = 'https://cdn.jsdelivr.net/gh/leanhminh2104/leanhminh.io.vn@main/assets';
 
   // Cookie helpers
   function setCookie(name, value, days) {
@@ -119,7 +119,7 @@
         return;
       }
       collapseNowPlayingCard();
-    }, 3000);
+    }, 3500);
   }
 
   function expandNowPlayingCard() {
@@ -156,7 +156,7 @@
   }
 
   function triggerEasterEgg(keyword) {
-    const words = keyword === 'sora' ? ['Sora', '✨', '🚀', '💙', '✦'] : ['Sora', '✨', '💖', '✦', '🌸'];
+    const words = keyword === 'lamdev' ? ['LAMDEV', '✨', '🚀', '💙', '✦'] : ['MINH', '✨', '💖', '✦', '🌸'];
     const burst = $('<div class="egg-burst"></div>').appendTo('body');
 
     for (let i = 0; i < 42; i += 1) {
@@ -172,7 +172,7 @@
       setTimeout(() => piece.remove(), 2800);
     }
 
-    FuiToast.success(keyword === 'sora' ? 'Sora mode activated!' : 'Hello Sora!');
+    FuiToast.success(keyword === 'lamdev' ? 'LAMDev mode activated!' : 'Hello Minh!');
     setTimeout(() => burst.remove(), 1900);
   }
 
@@ -182,7 +182,8 @@
     if (e.key.length !== 1) return;
 
     eggBuffer = `${eggBuffer}${e.key.toLowerCase()}`.slice(-12);
-    if (eggBuffer.endsWith('Sora')) triggerEasterEgg('sora');
+    if (eggBuffer.endsWith('minh')) triggerEasterEgg('minh');
+    if (eggBuffer.endsWith('lamdev')) triggerEasterEgg('lamdev');
   });
 
   function setMusicIcon(isPlaying) {
@@ -192,10 +193,9 @@
   }
 
   function playLoop(showToast = true) {
-    fetch(`${CDN_ASSETS}/music/tracks.json`)
+    fetch(`/api/music.php`)
       .then(res => res.json())
-      .then(tracks => {
-        const data = tracks[Math.floor(Math.random() * tracks.length)];
+      .then(data => {
         if (!data || !data.musicUrl) throw new Error('Invalid music data');
         if (currentAudio) currentAudio.pause();
 
@@ -209,7 +209,7 @@
           setMusicIcon(true);
           setNowPlayingState(true);
           startMusicProgress();
-          collapseNowPlayingCard();
+          expandNowPlayingCard();
           return data;
         });
 
@@ -223,6 +223,10 @@
             },
             { isClose: true }
           );
+        } else {
+          playPromise.then(info => {
+            FuiToast.success(`${info.titleTracks} - ${info.artist}`);
+          });
         }
 
         $('#toast-prompt').slideUp('fast');
@@ -289,8 +293,9 @@
   });
 
   // Append lock screen & toast container
-  $('body').append(
-    `
+  if (window.IS_404 !== true) {
+    $('body').append(
+      `
       <div id="fui-toast"></div>
       <div class="td-lock-screen">
         <section class="td-welcome">
@@ -305,7 +310,7 @@
           </div>
           <div class="infos">
             <div class="logo-web-title">
-              <img class="logo-ws" src="https://i.ibb.co/35HzKJ8x/photo-1-2026-10-19-05-32-38.jpg" alt="Sora">
+              <img class="logo-ws" src="https://i.imgur.com/dxVZLOG.png" alt="Lê Anh Minh">
               <span class="web-title">${$('html').attr('data-title-loader') || 'Màn Hình Khóa'}</span>
             </div>
             <span class="web_desc"></span>
@@ -314,7 +319,10 @@
         </section>
       </div>
     `
-  );
+    );
+  } else {
+    $('body').append('<div id="fui-toast"></div>');
+  }
 
   // Stars animation
   let delay = 0;
@@ -474,8 +482,6 @@
     "Giấc mơ không có hạn sử dụng, hãy hít thở sâu và thử lại.",
     "Thành công là tổng của những nỗ lực nhỏ được lặp lại mỗi ngày.",
     "Bình yên bắt đầu từ lúc bạn ngừng so sánh mình với người khác.",
-    "Đôi khi mất phương hướng cũng là cách để tìm ra con đường mới.",
-    "Người biết đủ là người giàu có nhất.",
     "Tử tế là ngôn ngữ mà người điếc có thể nghe và người mù có thể thấy.",
     "Không có áp lực thì không có kim cương.",
     "Bạn không cần hoàn hảo để bắt đầu, nhưng cần bắt đầu để trở nên tốt hơn.",
@@ -518,6 +524,7 @@
   showQuote();
   setInterval(showQuote, 5321);
 
+  // Loader animations & PJAX handlers
   let loaderEnded = false;
   function endLoading() {
     if (loaderEnded) return;
@@ -526,12 +533,12 @@
 
     setTimeout(() => {
       $('body').removeClass('loading');
-      $('.pace-active').animate({ top: '-100px' }, 'slow', function () {
+      $('.pace-active').animate({ top: '-100px' }, 50, function () {
         $(this).hide();
       });
-      $('.td-loading-v2').fadeOut('slow');
-      $('#loading-box').fadeOut('slow');
-    }, 750);
+      $('.td-loading-v2').fadeOut(50);
+      $('#loading-box').fadeOut(50);
+    }, 20);
   }
 
 
@@ -592,10 +599,8 @@
     const imageSources = Array.from(document.querySelectorAll('img'))
       .map(img => img.getAttribute('src'))
       .filter(src => src && (src.includes('/assets/img/') || src.startsWith('./assets/img/')));
-    const videoSources = Array.from(document.querySelectorAll('video source'))
-      .map(source => source.getAttribute('src'))
-      .filter(Boolean);
-    const sources = [...new Set([...imageSources, ...videoSources])];
+    // Không chờ video (video từ CDN nặng, không nên block loading)
+    const sources = [...new Set(imageSources)];
     const total = sources.length;
     let loaded = 0;
 
@@ -610,16 +615,16 @@
         clearTimeout(maxWait);
         clearInterval(smoothProgress);
         animateLoaderTo(100, 'Tải xong, đang mở trang...');
-        setTimeout(resolveAll, 750);
+        setTimeout(resolveAll, 20);
       };
 
       const smoothProgress = setInterval(() => {
         const assetPercent = total ? Math.round((loaded / total) * 82) : 82;
         const currentPercent = parseInt($('#loading-percentage').text(), 10) || 0;
         if (currentPercent < 90) {
-          animateLoaderTo(Math.min(currentPercent + 1, 8 + assetPercent), 'Đang tải tài nguyên...');
+          animateLoaderTo(Math.min(currentPercent + 15, 8 + assetPercent), 'Đang tải tài nguyên...');
         }
-      }, 35);
+      }, 15);
 
       const done = () => {
         if (finished) return;
@@ -634,7 +639,7 @@
         return;
       }
 
-      maxWait = setTimeout(finishProgress, 10000);
+      maxWait = setTimeout(finishProgress, 300);
 
       sources.forEach(src => {
         if (/\.mp4(\?|$)/i.test(src)) {
@@ -663,11 +668,13 @@
   $(document).on('pjax:send', () => Loader.init());
   $(document).on('pjax:complete', endLoading);
 
+  console.log('\n');
   console.log(
-    '%c My Github %c https://dalymmo.com',
-    'color:#fff;background:linear-gradient(90deg,#448bff,#44e9ff);padding:5px 0;',
-    'color:#000;background:linear-gradient(90deg,#44e9ff,#ffffff);padding:5px 10px 5px 0;'
+    '%c 👨‍💻 LÊ VĂN ANH MINH %c 🚀 leanhminh.io.vn ',
+    'color: #ffffff; background: linear-gradient(90deg, #448bff, #00c6ff); padding: 8px 15px; border-radius: 8px 0 0 8px; font-size: 13px; font-weight: bold; font-family: sans-serif;',
+    'color: #00c6ff; background: #222222; padding: 8px 15px; border-radius: 0 8px 8px 0; font-size: 13px; font-weight: bold; font-family: sans-serif;'
   );
+  console.log('\n');
 
   if (window.Fancybox) {
     Fancybox.bind('[data-fancybox]', {});
@@ -684,10 +691,20 @@
       return;
     }
 
-    const $textarea = $('<textarea>').val(text).appendTo('body').select();
+    const $textarea = $('<textarea>')
+      .val(text)
+      .css({ position: 'absolute', left: '-9999px', top: '-9999px' })
+      .appendTo('body');
+    $textarea[0].select();
+    $textarea[0].setSelectionRange(0, 99999);
+    
     try {
-      document.execCommand('copy');
-      FuiToast.success('Đã sao chép vào bộ nhớ tạm!');
+      const successful = document.execCommand('copy');
+      if (successful) {
+        FuiToast.success('Đã sao chép vào bộ nhớ tạm!');
+      } else {
+        FuiToast.error('Trình duyệt từ chối sao chép');
+      }
     } catch (err) {
       FuiToast.error(`Sao chép thất bại: ${err}`);
     }
@@ -836,3 +853,51 @@
   sakuraImage.onload = startSakura;
   sakuraImage.src = 'https://file.hstatic.net/200000259653/file/pages_17a8568517e94dcd9c8aec5587_570924d1fa4b4da1aa011044c9d7cc1c.png';
 }(window);
+
+// --- Header Menu Logic ---
+(function() {
+    function initHeaderMenu() {
+        var btn = document.getElementById('header-menu-toggle');
+        var popup = document.getElementById('header-popup');
+        var icon = document.getElementById('header-menu-icon');
+        if (!btn || !popup) return;
+
+        function closePopup() {
+            popup.classList.remove('open');
+            if (icon) icon.className = 'ri-menu-3-line text-[1.15rem]';
+        }
+
+        function openPopup() {
+            popup.classList.add('open');
+            if (icon) icon.className = 'ri-close-line text-[1.15rem]';
+        }
+
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            var isOpen = popup.classList.contains('open');
+            if (isOpen) {
+                closePopup();
+            } else {
+                openPopup();
+            }
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!popup.contains(e.target) && e.target !== btn) {
+                closePopup();
+            }
+        });
+
+        popup.querySelectorAll('a.spa-link, a').forEach(function(a) {
+            a.addEventListener('click', function() {
+                closePopup();
+            });
+        });
+    }
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initHeaderMenu);
+    } else {
+        initHeaderMenu();
+    }
+})();
