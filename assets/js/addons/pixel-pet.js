@@ -15,6 +15,7 @@
     @keyframes floorGlow{0%,100%{opacity:.55;transform:scaleX(.88)}50%{opacity:1;transform:scaleX(1.08)}}
     @keyframes floorSpark{0%,100%{opacity:.2;transform:translateY(8px) scale(.65)}45%{opacity:1;transform:translateY(-10px) scale(1.15)}}
     @media (max-width:640px){body #waifu{left:0!important;bottom:8px!important;transform:scale(.72);pointer-events:none}body #waifu:hover{transform:scale(.72)}#waifu-toggle{left:10px;bottom:10px}.waifu-floor-effect{left:4px;bottom:8px;transform:scale(.72);transform-origin:left bottom}}
+    body.hide-pets #waifu, body.hide-pets #live2d-widget, body.hide-pets .waifu-floor-effect, body.hide-pets .neko { display: none !important; }
   `;
   document.head.appendChild(style);
 
@@ -39,12 +40,32 @@
   floorEffect.innerHTML = '<span></span><span></span><span></span><span></span>';
   document.body.appendChild(floorEffect);
 
+  let isHidden = false;
+
   const toggle = document.createElement('button');
   toggle.id = 'waifu-toggle';
   toggle.type = 'button';
-  toggle.innerHTML = '<i class="ri-bear-smile-line"></i>';
+  toggle.innerHTML = isHidden ? '<i class="ri-eye-line"></i>' : '<i class="ri-bear-smile-line"></i>';
   toggle.setAttribute('aria-label', 'Ẩn hiện nhân vật anime');
   document.body.appendChild(toggle);
+
+  const tips = document.createElement('div');
+  tips.id = 'waifu-tips';
+  tips.style.cssText = 'position:fixed;left:18px;bottom:260px;padding:8px 15px;z-index:95;opacity:0;transition:opacity .3s;pointer-events:none;transform:translateY(10px);';
+  document.body.appendChild(tips);
+
+  let tipTimer;
+  function showMessage(text, timeout = 3000) {
+    if (isHidden) return;
+    tips.innerHTML = text;
+    tips.style.transform = 'translateY(0)';
+    tips.style.opacity = '1';
+    clearTimeout(tipTimer);
+    tipTimer = setTimeout(() => {
+      tips.style.opacity = '0';
+      tips.style.transform = 'translateY(10px)';
+    }, timeout);
+  }
 
   Promise.all([
     loadScript('https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js')
@@ -71,24 +92,39 @@
         opacityDefault: 0.92,
         opacityOnHover: 1
       },
-      dialog: {
-        enable: true,
-        script: {
-          'tap body': 'Đừng chạm lung tung nha ✨',
-          'tap face': 'Hihi, nhột đó!',
-          'idle 5': 'Cậu nhớ uống nước nha.',
-          'idle 10': 'Trang này xịn đó chứ!'
-        }
-      }
     });
 
-    let hidden = false;
+    setTimeout(() => {
+      const canvas = document.getElementById('live2dcanvas');
+      if (canvas) {
+        canvas.addEventListener('click', (e) => {
+           const rect = canvas.getBoundingClientRect();
+           if (e.clientY - rect.top < rect.height / 3) {
+             showMessage('Hihi, nhột đó!');
+           } else {
+             showMessage('Đừng chạm lung tung nha ✨');
+           }
+        });
+      }
+    }, 2000);
+
+    let idleTime = 0;
+    setInterval(() => {
+      if (isHidden) return;
+      idleTime++;
+      if (idleTime === 15) showMessage('Sora nhớ uống nước nha.');
+      if (idleTime === 45) { showMessage('Trang này xịn đó chứ!'); idleTime = 0; }
+    }, 1000);
+    window.addEventListener('mousemove', () => idleTime = 0);
+    window.addEventListener('keydown', () => idleTime = 0);
+
     toggle.addEventListener('click', () => {
-      hidden = !hidden;
-      const waifu = document.getElementById('waifu');
-      if (waifu) waifu.style.display = hidden ? 'none' : '';
-      floorEffect.style.display = hidden ? 'none' : '';
-      toggle.innerHTML = hidden ? '<i class="ri-eye-line"></i>' : '<i class="ri-bear-smile-line"></i>';
+      isHidden = !isHidden;
+      document.body.classList.toggle('hide-pets', isHidden);
+      toggle.innerHTML = isHidden ? '<i class="ri-eye-line"></i>' : '<i class="ri-bear-smile-line"></i>';
+      if (isHidden) {
+        tips.style.opacity = '0';
+      }
     });
   }).catch(() => {
     toggle.remove();
