@@ -193,9 +193,10 @@
   }
 
   function playLoop(showToast = true) {
-    fetch(`/api/music.php`)
+    fetch(`${CDN_ASSETS}/music/tracks.json`)
       .then(res => res.json())
-      .then(data => {
+      .then(tracks => {
+        const data = tracks[Math.floor(Math.random() * tracks.length)];
         if (!data || !data.musicUrl) throw new Error('Invalid music data');
         if (currentAudio) currentAudio.pause();
 
@@ -203,13 +204,13 @@
         currentAudio = new Audio(data.musicUrl);
         updateNowPlaying(data);
         $('.now-playing-progress span').css('width', '0%');
-        currentAudio.addEventListener('ended', () => playLoop(false));
+        currentAudio.addEventListener('ended', () => playLoop(false)); 
 
         const playPromise = currentAudio.play().then(() => {
           setMusicIcon(true);
           setNowPlayingState(true);
           startMusicProgress();
-          expandNowPlayingCard();
+          collapseNowPlayingCard();
           return data;
         });
 
@@ -223,10 +224,6 @@
             },
             { isClose: true }
           );
-        } else {
-          playPromise.then(info => {
-            FuiToast.success(`${info.titleTracks} - ${info.artist}`);
-          });
         }
 
         $('#toast-prompt').slideUp('fast');
