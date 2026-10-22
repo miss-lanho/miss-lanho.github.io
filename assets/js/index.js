@@ -156,7 +156,7 @@
   }
 
   function triggerEasterEgg(keyword) {
-    const words = keyword === 'lamdev' ? ['LAMDEV', '✨', '🚀', '💙', '✦'] : ['MINH', '✨', '💖', '✦', '🌸'];
+    const words = keyword === 'sora' ? ['SORA', '✨', '🚀', '💙', '✦'] : ['SORA', '✨', '💖', '✦', '🌸'];
     const burst = $('<div class="egg-burst"></div>').appendTo('body');
 
     for (let i = 0; i < 42; i += 1) {
@@ -172,7 +172,7 @@
       setTimeout(() => piece.remove(), 2800);
     }
 
-    FuiToast.success(keyword === 'lamdev' ? 'LAMDev mode activated!' : 'Hello Minh!');
+    FuiToast.success(keyword === 'sora' ? 'SORA mode activated!' : 'Hello Sora!');
     setTimeout(() => burst.remove(), 1900);
   }
 
@@ -182,8 +182,8 @@
     if (e.key.length !== 1) return;
 
     eggBuffer = `${eggBuffer}${e.key.toLowerCase()}`.slice(-12);
-    if (eggBuffer.endsWith('minh')) triggerEasterEgg('minh');
-    if (eggBuffer.endsWith('lamdev')) triggerEasterEgg('lamdev');
+    if (eggBuffer.endsWith('Sora')) triggerEasterEgg('Sora');
+    if (eggBuffer.endsWith('sora')) triggerEasterEgg('sora');
   });
 
   function setMusicIcon(isPlaying) {
