@@ -112,8 +112,8 @@
     setInterval(() => {
       if (isHidden) return;
       idleTime++;
-      if (idleTime === 15) showMessage('Cậu nhớ uống nhiều nước nha');
-      if (idleTime === 45) { showMessage('Nhớ ăn nhiều trái cây nữa nha'); idleTime = 0; }
+      if (idleTime === 15) showMessage('Web hoạt động tốt nhất khi xem trên máy tính nhe');
+      if (idleTime === 45) { showMessage('Cậu nhớ uống nhiều nước nha'); idleTime = 0; }
     }, 1000);
     window.addEventListener('mousemove', () => idleTime = 0);
     window.addEventListener('keydown', () => idleTime = 0);
