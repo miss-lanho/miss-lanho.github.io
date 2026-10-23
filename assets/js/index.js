@@ -298,10 +298,10 @@
         <section class="td-welcome">
           <div class="medias">
             <video class="pc item_video" autoplay loop muted playsinline>
-              <source src="${CDN_ASSETS}/video/pc.mp4?v=${randomVersion()}" type="video/mp4">
+              <source src="${CDN_ASSETS}/video/ra.mp4?v=${randomVersion()}" type="video/mp4">
             </video>
             <video class="mobile item_video" autoplay loop muted playsinline>
-              <source src="${CDN_ASSETS}/video/pc.mp4?v=${randomVersion()}" type="video/mp4">
+              <source src="${CDN_ASSETS}/video/ra.mp4?v=${randomVersion()}" type="video/mp4">
             </video>
             <div class="date"></div>
           </div>
