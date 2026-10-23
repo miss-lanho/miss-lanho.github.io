@@ -100,7 +100,7 @@
         canvas.addEventListener('click', (e) => {
            const rect = canvas.getBoundingClientRect();
            if (e.clientY - rect.top < rect.height / 3) {
-             showMessage('Hihi, nhột đó!');
+             showMessage('Hihi, nhột đó');
            } else {
              showMessage('Đừng chạm lung tung nha ✨');
            }
@@ -112,8 +112,8 @@
     setInterval(() => {
       if (isHidden) return;
       idleTime++;
-      if (idleTime === 15) showMessage('Sora nhớ uống nước nha.');
-      if (idleTime === 45) { showMessage('Trang này xịn đó chứ!'); idleTime = 0; }
+      if (idleTime === 15) showMessage('Cậu nhớ uống nhiều nước nha');
+      if (idleTime === 45) { showMessage('Nhớ ăn nhiều trái cây nữa nha'); idleTime = 0; }
     }, 1000);
     window.addEventListener('mousemove', () => idleTime = 0);
     window.addEventListener('keydown', () => idleTime = 0);
