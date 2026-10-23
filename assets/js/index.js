@@ -307,7 +307,7 @@
           </div>
           <div class="infos">
             <div class="logo-web-title">
-              <img class="logo-ws" src="https://i.ibb.co/mr78pxYn/photo-1-2026-10-19-05-32-38.jpg" alt="Oops">
+              <img class="logo-ws" src=https://i.ibb.co/Jj5wHLC4/sora.jpg" alt="Oops">
               <span class="web-title">${$('html').attr('data-title-loader') || 'Màn Hình Khóa'}</span>
             </div>
             <span class="web_desc"></span>
@@ -318,7 +318,7 @@
     `
     );
   } else {
-    $('body').append('<div id="fui-toast"></div>');
+    $('body').append('<div id="fui-toast"></div>'); 
   }
 
   // Stars animation
