@@ -1,7 +1,7 @@
 const IS_MOBILE = /Android|iPhone|iPad/i.test(navigator.userAgent);
 
 const CONFIG = {
-    particleCount: IS_MOBILE ? 12000 : 40000, 
+    particleCount: IS_MOBILE ? 5000 : 40000, 
     text1: "I",
     text2: "LOVE",
     text3: "YOU",
@@ -229,7 +229,7 @@ function updateDynamicText(text) {
 }
 
 
-const galaxyCount = IS_MOBILE ? 2000 : 8000;
+const galaxyCount = IS_MOBILE ? 700 : 8000;
 const galaxyGeo = new THREE.BufferGeometry();
 const galaxyPos = new Float32Array(galaxyCount * 3);
 const galaxyColors = new Float32Array(galaxyCount * 3);
