@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sora - Luv</title>
+    <meta property="og:title" content="Sora | Luv">
+    <link rel="shortcut icon" href="https://i.ibb.co/Jj5wHLC4/sora.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <div id="loading">Starting System...<br><span style="font-size:14px; color:#aaa;">Allow Camera & Mic</span></div>
+
+    <div id="ui-layer">
+        <div class="ui-header-row">
+            <h1>Controls</h1>
+            <button id="btn-collapse">−</button>
+        </div>
+        
+        <div id="ui-content">
+            <button id="btn-voice">
+                <div id="voice-indicator"></div>
+                <span id="voice-btn-text">Enable Voice Mode</span>
+            </button>
+
+            <div class="stat-row">
+                <span>Gesture/Word:</span>
+                <span id="gesture-val" class="value">...</span>
+            </div>
+            <div class="stat-row">
+                <span>Fingers:</span>
+                <span id="finger-val" class="value">0</span>
+            </div>
+            
+            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 5px 0;">
+            <div style="font-size: 11px; color: #ddd; pointer-events: none;">
+                <b>Voice Mode ON:</b><br>
+                🎤 Say ANY word<br>
+                👋 Touch text to scatter<br>
+                <br>
+                <b>Voice Mode OFF:</b><br>
+                ☝️ 1: "I"<br>
+                ✌️ 2: "LOVE"<br>
+                🤟 3: "YOU"<br>
+                ✋ 4: "I LOVE YOU"<br>
+                ✊ Fist: Shrink
+            </div>
+        </div>
+    </div>
+
+    <div id="camera-wrapper">
+        <div id="camera-handle">:: Drag to Move ::</div>
+        <video id="webcam-preview" playsinline muted></video> 
+    </div>
+    
+    <div id="canvas-container"></div>
+    <canvas id="capture-canvas" style="display:none;"></canvas>  
+    <script src="luv.js"></script>
+</body>
+</html>
