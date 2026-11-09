@@ -6,7 +6,18 @@
     <string>Locket Sora 💛</string>
 
     <key>PayloadDescription</key>
-    <string>Hồ sơ cầu hình VIP chặn thu hồi Locket Gold vĩnh viễn.&#10;@miss_lanho</string>
+    <string>Chặn thu hồi quyền truy cập Locket Gold 💛
+
+🎨 Mở khóa bộ icon app
+🌈 Mở khóa camera theme
+🖼️ Mở khóa khung viền Widget
+📒 Mở khóa nhiều loại caption
+👥 Không giới hạn bạn bè
+🎬 Quay video 60s
+📑 Đăng ảnh/video từ thư viện
+👀 Xem lịch sử ai đã xem locket
+
+🌐 Website: miss-lanho.github.io</string>
 
     <key>PayloadIdentifier</key>
     <string>com.sora.locketgold.profile</string>
