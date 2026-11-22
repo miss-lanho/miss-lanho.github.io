@@ -8,16 +8,7 @@
     <key>PayloadDescription</key>
     <string>Chặn thu hồi quyền truy cập Locket Gold 💛
 
-🎨 Mở khóa bộ icon app
-🌈 Mở khóa camera theme
-🖼️ Mở khóa khung viền Widget
-📒 Mở khóa nhiều loại caption
-👥 Không giới hạn bạn bè
-🎬 Quay video 60s
-📑 Đăng ảnh/video từ thư viện
-👀 Xem lịch sử ai đã xem locket
-
-🌐 Website: miss-lanho.github.io</string>
+🌐 Website: misslanho.io.vn</string>
 
     <key>PayloadIdentifier</key>
     <string>com.sora.locketgold.profile</string>
@@ -35,7 +26,7 @@
     <integer>1</integer>
 
     <key>PayloadOrganization</key>
-    <string>miss-lanho.github.io</string>
+    <string>misslanho.io.vn</string>
 
     <key>PayloadContent</key>
     <array>
@@ -70,7 +61,7 @@
             <string>Locket Sora DNS</string>
 
             <key>PayloadOrganization</key>
-            <string>miss-lanho.github.io</string>
+            <string>misslanho.io.vn</string>
 
             <key>PayloadVersion</key>
             <integer>1</integer>
